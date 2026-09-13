@@ -1,0 +1,79 @@
+---
+import { site, nav } from "../data/content";
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap footer__row">
+    <div>
+      <p class="footer__brand">{site.name}</p>
+      <p class="footer__disclaimer">
+        Independent redesign concept created as a design case study. Not affiliated with or
+        endorsed by the real Fit Food Canarias business.
+      </p>
+    </div>
+
+    <nav aria-label="Footer">
+      <ul class="footer__nav">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <p class="footer__copy">© {year} — concept design, not a live storefront.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .footer__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .footer__brand {
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+
+  .footer__disclaimer {
+    margin-top: 0.4rem;
+    max-width: 42ch;
+    font-size: 0.82rem;
+    color: var(--color-text-ondark-muted);
+  }
+
+  .footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer__nav a {
+    text-decoration: none;
+    font-size: 0.88rem;
+    color: var(--color-text-ondark-muted);
+  }
+
+  .footer__nav a:hover {
+    color: var(--color-text-ondark);
+  }
+
+  .footer__copy {
+    font-family: var(--font-data);
+    font-size: 0.78rem;
+    color: var(--color-text-ondark-muted);
+    align-self: flex-end;
+  }
+</style>

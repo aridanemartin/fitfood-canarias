@@ -1,0 +1,66 @@
+---
+import { steps } from "../data/content";
+---
+
+<section id="how-it-works" class="section how">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps, then it's just dinner.</h2>
+    </div>
+
+    <ol class="how__list">
+      {
+        steps.map((step) => (
+          <li class="how__step reveal">
+            <span class="how__number">{step.number}</span>
+            <div>
+              <h3 class="how__title">{step.title}</h3>
+              <p class="how__text">{step.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .how__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--color-line);
+    border-radius: var(--radius-container);
+    overflow: hidden;
+  }
+
+  .how__step {
+    background: var(--color-ink);
+    padding: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .how__number {
+    display: block;
+    font-family: var(--font-data);
+    font-size: 0.95rem;
+    color: var(--accent-gain);
+    margin-bottom: 1.1rem;
+  }
+
+  .how__title {
+    font-size: 1.25rem;
+  }
+
+  .how__text {
+    margin-top: 0.65rem;
+    color: var(--color-text-ondark-muted);
+    font-size: 0.98rem;
+  }
+
+  @media (max-width: 760px) {
+    .how__list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

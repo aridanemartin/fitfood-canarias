@@ -1,0 +1,128 @@
+---
+import { hero, plans } from "../data/content";
+---
+
+<section id="top" class="hero section">
+  <div class="wrap hero__grid">
+    <div class="hero__copy reveal">
+      <p class="eyebrow">{hero.eyebrow}</p>
+      <h1 class="hero__headline">{hero.headline}</h1>
+      <p class="hero__sub">{hero.sub}</p>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href={hero.ctaPrimary.href}>{hero.ctaPrimary.label}</a>
+        <a class="btn btn--ghost" href={hero.ctaSecondary.href}>{hero.ctaSecondary.label}</a>
+      </div>
+    </div>
+
+    <div class="hero__tray reveal" role="img" aria-label="Three meal-prep tray compartments, one per plan: Fat Loss, Balanced and Muscle Gain">
+      {
+        plans.map((plan, i) => (
+          <div class={`hero__cell hero__cell--${i}`} style={`--cell-accent: var(--accent-${plan.accent})`}>
+            <img src={plan.image} alt="" loading={i === 0 ? "eager" : "lazy"} />
+            <div class="hero__cell-tag">
+              <span class="hero__cell-dot" />
+              {plan.name}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: clamp(2.5rem, 6vw, 4.5rem);
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  .hero__headline {
+    font-size: clamp(2.3rem, 5.2vw, 3.6rem);
+    margin-top: 0.75rem;
+    max-width: 15ch;
+  }
+
+  .hero__sub {
+    margin-top: 1.4rem;
+    max-width: 46ch;
+    color: var(--color-text-ondark-muted);
+    font-size: 1.08rem;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.2rem;
+  }
+
+  /* Tray: asymmetric bento grid — one tall compartment + two stacked,
+     echoing an actual divided meal-prep container. */
+  .hero__tray {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: repeat(2, minmax(120px, 1fr));
+    gap: 6px;
+    aspect-ratio: 4 / 3.1;
+    background: var(--color-line);
+    padding: 6px;
+    border-radius: var(--radius-container);
+  }
+
+  .hero__cell {
+    position: relative;
+    overflow: hidden;
+    border-radius: calc(var(--radius-container) - 6px);
+    background: var(--color-ink-raised);
+  }
+
+  .hero__cell--0 {
+    grid-row: 1 / span 2;
+  }
+
+  .hero__cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__cell-tag {
+    position: absolute;
+    left: 0.6rem;
+    bottom: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-data);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text-ondark);
+    background: rgba(20, 18, 14, 0.72);
+    backdrop-filter: blur(4px);
+    padding: 0.3rem 0.55rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .hero__cell-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cell-accent);
+  }
+
+  @media (max-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__tray {
+      aspect-ratio: 4 / 2.4;
+    }
+  }
+</style>

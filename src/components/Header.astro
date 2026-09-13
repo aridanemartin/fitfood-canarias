@@ -1,0 +1,94 @@
+---
+import { site, nav } from "../data/content";
+---
+
+<header class="header">
+  <div class="wrap header__row">
+    <a class="header__brand" href="#top">
+      {site.name}
+      <span class="header__badge">Redesign concept</span>
+    </a>
+
+    <nav class="header__nav" aria-label="Primary">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a class="btn btn--primary header__cta" href="#plans">View plans</a>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(20, 18, 14, 0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .header__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1rem;
+  }
+
+  .header__brand {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    text-decoration: none;
+    color: var(--color-text-ondark);
+  }
+
+  .header__badge {
+    font-family: var(--font-data);
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    background: var(--accent-gain);
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .header__nav ul {
+    display: flex;
+    gap: 1.75rem;
+  }
+
+  .header__nav a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    color: var(--color-text-ondark-muted);
+    transition: color 0.15s ease;
+  }
+
+  .header__nav a:hover {
+    color: var(--color-text-ondark);
+  }
+
+  @media (max-width: 760px) {
+    .header__nav {
+      display: none;
+    }
+
+    .header__cta {
+      padding: 0.65rem 1.1rem;
+      font-size: 0.75rem;
+    }
+  }
+</style>

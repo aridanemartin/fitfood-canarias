@@ -1,0 +1,103 @@
+---
+import { testimonials } from "../data/content";
+
+function initials(name: string) {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .join("");
+}
+---
+
+<section class="section section--onlight testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">From the kitchen's clients</p>
+      <h2>Illustrative feedback, written for this concept</h2>
+      <p>
+        Sample quotes for this redesign pitch — not verified reviews from the live business.
+      </p>
+    </div>
+
+    <div class="testimonials__grid">
+      {
+        testimonials.map((t) => (
+          <figure class="testimonial reveal">
+            <blockquote>"{t.quote}"</blockquote>
+            <figcaption>
+              <span class="testimonial__avatar">{initials(t.name)}</span>
+              <span>
+                <span class="testimonial__name">{t.name}</span>
+                <span class="testimonial__role">{t.role}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 2.5vw, 1.5rem);
+  }
+
+  .testimonial {
+    margin: 0;
+    background: var(--color-ink);
+    color: var(--color-text-ondark);
+    border-radius: var(--radius-container);
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+
+  .testimonial blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.08rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .testimonial figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .testimonial__avatar {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--accent-gain);
+    color: var(--color-ink);
+    font-family: var(--font-data);
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .testimonial__name {
+    display: block;
+    font-weight: 600;
+  }
+
+  .testimonial__role {
+    display: block;
+    color: var(--color-text-ondark-muted);
+  }
+
+  @media (max-width: 900px) {
+    .testimonials__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

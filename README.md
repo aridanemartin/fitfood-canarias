@@ -1,43 +1,56 @@
-# Astro Starter Kit: Minimal
+# Fit Food Canarias — redesign concept
+
+An independent redesign concept for [fitfoodcanarias.com](https://fitfoodcanarias.com/), a
+meal-prep delivery kitchen in Gran Canaria. Built as a design case study / pitch — **not
+affiliated with or endorsed by the real business**.
+
+## What this is
+
+The original site sells three goal-based meal plans (Fat Loss, Balanced, Muscle Gain),
+personalised by gender and objective, delivered from a kitchen in Castillo del Romeral. This
+redesign keeps those real business facts but rewrites all copy, and reworks the visual
+direction away from a generic "fitness app" template:
+
+- **Palette drawn from the island, not a stock accent color** — malpaís (volcanic rock) black
+  as the base, gofio cream for contrast panels, and three earthy accents lifted from mojo
+  rojo, mojo verde and ripe plátano — one per meal plan, so colour carries meaning.
+- **A "tray" motif as the structural signature** — asymmetric bento-style grids and a hairline
+  divider-with-notches pattern that echoes the divider ridges of an actual compartmentalised
+  meal-prep container, used throughout instead of generic centered cards.
+- **Type**: Bricolage Grotesque (display), Archivo (body), Space Mono (macros/data/labels —
+  a nod to printed nutrition labels).
+
+Photography is hotlinked from Unsplash (see `src/data/content.ts` for sources) rather than
+copied from the live site, to keep this repo license-clean as a pitch artifact.
+
+## Stack
+
+- [Astro](https://astro.build) (static output)
+- Plain CSS with design tokens (no framework)
+
+## Development
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # outputs to ./dist
+npm run preview  # preview the production build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── data/content.ts       # all copy + plan/testimonial/blog data
+├── layouts/BaseLayout.astro
+├── components/            # Header, Hero, HowItWorks, Plans, WhyUs,
+│                           # Testimonials, BlogTeaser, ContactCTA, Footer
+├── styles/global.css      # design tokens, resets, shared utilities
+└── pages/index.astro
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Disclaimer
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This is a design exercise / freelance pitch, not a live storefront. Business details
+(address, phone, email) match the real company's public listing for realism, but no order,
+contact, or payment flow here is functional.
