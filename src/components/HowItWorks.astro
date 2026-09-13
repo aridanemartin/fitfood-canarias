@@ -1,12 +1,22 @@
 ---
-import { steps } from "../data/content";
+import { getContent } from "../data/content";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n/locales";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { steps } = getContent(lang);
 ---
 
 <section id="how-it-works" class="section how">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">How it works</p>
-      <h2>Three steps, then it's just dinner.</h2>
+      <p class="eyebrow">{t("how.eyebrow")}</p>
+      <h2>{t("how.heading")}</h2>
     </div>
 
     <ol class="how__list">

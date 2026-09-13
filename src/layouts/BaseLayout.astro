@@ -1,15 +1,23 @@
 ---
 import "../styles/global.css";
+import { DEFAULT_LOCALE, type Lang } from "../i18n/locales";
+import type { Alternate } from "../i18n/alternates";
 
 interface Props {
   title: string;
   description: string;
+  lang: Lang;
+  /** Reciprocal hreflang pairs; empty when this page has no translation. */
+  alternates?: Alternate[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, lang, alternates = [] } = Astro.props;
+
+const canonical = Astro.url.pathname;
+const defaultAlternate = alternates.find((alt) => alt.lang === DEFAULT_LOCALE);
 ---
 
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -18,6 +26,33 @@ const { title, description } = Astro.props;
 
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonical} />
+    {
+      alternates.map((alt) => (
+        <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+      ))
+    }
+    {
+      defaultAlternate && (
+        <link rel="alternate" hreflang="x-default" href={defaultAlternate.href} />
+      )
+    }
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_GB"} />
+    {
+      alternates
+        .filter((alt) => alt.lang !== lang)
+        .map((alt) => (
+          <meta
+            property="og:locale:alternate"
+            content={alt.lang === "es" ? "es_ES" : "en_GB"}
+          />
+        ))
+    }
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

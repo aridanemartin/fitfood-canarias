@@ -1,5 +1,15 @@
 ---
-import { testimonials } from "../data/content";
+import { getContent } from "../data/content";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n/locales";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { testimonials } = getContent(lang);
 
 function initials(name: string) {
   return name
@@ -12,23 +22,21 @@ function initials(name: string) {
 <section class="section section--onlight testimonials">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">From the kitchen's clients</p>
-      <h2>Illustrative feedback, written for this concept</h2>
-      <p>
-        Sample quotes for this redesign pitch — not verified reviews from the live business.
-      </p>
+      <p class="eyebrow">{t("testimonials.eyebrow")}</p>
+      <h2>{t("testimonials.heading")}</h2>
+      <p>{t("testimonials.note")}</p>
     </div>
 
     <div class="testimonials__grid">
       {
-        testimonials.map((t) => (
+        testimonials.map((item) => (
           <figure class="testimonial reveal">
-            <blockquote>"{t.quote}"</blockquote>
+            <blockquote>"{item.quote}"</blockquote>
             <figcaption>
-              <span class="testimonial__avatar">{initials(t.name)}</span>
+              <span class="testimonial__avatar">{initials(item.name)}</span>
               <span>
-                <span class="testimonial__name">{t.name}</span>
-                <span class="testimonial__role">{t.role}</span>
+                <span class="testimonial__name">{item.name}</span>
+                <span class="testimonial__role">{item.role}</span>
               </span>
             </figcaption>
           </figure>

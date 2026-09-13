@@ -1,27 +1,41 @@
 ---
 import { site, nav } from "../data/content";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n/locales";
+import type { Alternate } from "../i18n/alternates";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+interface Props {
+  lang: Lang;
+  alternates?: Alternate[];
+}
+
+const { lang, alternates = [] } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <header class="header">
   <div class="wrap header__row">
     <a class="header__brand" href="#top">
       <img src={site.logo} alt={site.name} class="header__logo" />
-      <span class="header__badge">Redesign concept</span>
     </a>
 
-    <nav class="header__nav" aria-label="Primary">
+    <nav class="header__nav" aria-label={t("nav.label")}>
       <ul>
         {
           nav.map((item) => (
             <li>
-              <a href={item.href}>{item.label}</a>
+              <a href={item.href}>{t(item.key)}</a>
             </li>
           ))
         }
       </ul>
     </nav>
 
-    <a class="btn btn--primary header__cta" href="#plans">View plans</a>
+    <div class="header__actions">
+      <LanguageSwitcher lang={lang} alternates={alternates} />
+      <a class="btn btn--primary header__cta" href="#plans">{t("cta.viewPlans")}</a>
+    </div>
   </div>
 </header>
 
@@ -56,17 +70,6 @@ import { site, nav } from "../data/content";
     width: auto;
   }
 
-  .header__badge {
-    font-family: var(--font-data);
-    font-size: 0.62rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--color-ink);
-    background: var(--accent);
-    padding: 0.2rem 0.5rem;
-    border-radius: var(--radius-pill);
-  }
-
   .header__nav ul {
     display: flex;
     gap: 1.75rem;
@@ -81,6 +84,12 @@ import { site, nav } from "../data/content";
 
   .header__nav a:hover {
     color: var(--color-text-ondark);
+  }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
   }
 
   @media (max-width: 760px) {

@@ -1,18 +1,30 @@
 ---
-import { differentiators } from "../data/content";
+import { getContent } from "../data/content";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n/locales";
+import GranCanaria from "./GranCanaria.astro";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { differentiators } = getContent(lang);
 ---
 
 <section id="why-us" class="section why">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Why us</p>
-      <h2>We're not a recipe app with a delivery van.</h2>
+      <p class="eyebrow">{t("why.eyebrow")}</p>
+      <h2>{t("why.heading")}</h2>
     </div>
 
     <div class="why__grid">
       {
         differentiators.map((item, i) => (
           <div class={`why__cell why__cell--${i} reveal`}>
+            {i === 2 && <GranCanaria class="why__island" />}
             <h3 class="why__title">{item.title}</h3>
             <p class="why__text">{item.text}</p>
           </div>

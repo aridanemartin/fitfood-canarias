@@ -1,20 +1,30 @@
 ---
-import { hero, plans } from "../data/content";
+import { getContent } from "../data/content";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n/locales";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { plans } = getContent(lang);
 ---
 
 <section id="top" class="hero section">
   <div class="wrap hero__grid">
     <div class="hero__copy reveal">
-      <p class="eyebrow">{hero.eyebrow}</p>
-      <h1 class="hero__headline">{hero.headline}</h1>
-      <p class="hero__sub">{hero.sub}</p>
+      <p class="eyebrow">{t("hero.eyebrow")}</p>
+      <h1 class="hero__headline">{t("hero.headline")}</h1>
+      <p class="hero__sub">{t("hero.sub")}</p>
       <div class="hero__ctas">
-        <a class="btn btn--primary" href={hero.ctaPrimary.href}>{hero.ctaPrimary.label}</a>
-        <a class="btn btn--ghost" href={hero.ctaSecondary.href}>{hero.ctaSecondary.label}</a>
+        <a class="btn btn--primary" href="#plans">{t("hero.ctaPrimary")}</a>
+        <a class="btn btn--ghost" href="#how-it-works">{t("hero.ctaSecondary")}</a>
       </div>
     </div>
 
-    <div class="hero__tray reveal" role="img" aria-label="Three meal-prep tray compartments, one per plan: Fat Loss, Balanced and Muscle Gain">
+    <div class="hero__tray reveal" role="img" aria-label={t("hero.trayLabel")}>
       {
         plans.map((plan, i) => (
           <div class={`hero__cell hero__cell--${i}`}>

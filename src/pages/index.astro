@@ -1,34 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
-import Hero from "../components/Hero.astro";
-import HowItWorks from "../components/HowItWorks.astro";
-import Plans from "../components/Plans.astro";
-import Founder from "../components/Founder.astro";
-import WhyUs from "../components/WhyUs.astro";
-import Testimonials from "../components/Testimonials.astro";
-import BlogTeaser from "../components/BlogTeaser.astro";
-import ContactCTA from "../components/ContactCTA.astro";
-import Footer from "../components/Footer.astro";
+import HomePage from "../layouts/HomePage.astro";
 ---
 
-<BaseLayout
-  title="Fit Food Canarias — Meal prep, measured to your goal (redesign concept)"
-  description="An independent redesign concept for Fit Food Canarias: goal-based meal prep delivery in Gran Canaria, personalised by gender and objective."
->
-  <Header />
-  <main>
-    <Hero />
-    <div class="tray-divider"></div>
-    <HowItWorks />
-    <Plans />
-    <Founder />
-    <div class="tray-divider"></div>
-    <WhyUs />
-    <Testimonials />
-    <BlogTeaser />
-    <div class="tray-divider"></div>
-    <ContactCTA />
-  </main>
-  <Footer />
-</BaseLayout>
+<HomePage lang="es" />

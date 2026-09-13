@@ -1,34 +1,43 @@
 ---
 import { site } from "../data/content";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n/locales";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="contact" class="section section--onlight contact">
   <div class="wrap contact__grid">
     <div class="reveal">
-      <p class="eyebrow">Get your first delivery</p>
-      <h2>Tell the kitchen which plan, we'll handle the rest.</h2>
-      <p class="contact__sub">
-        Call or email to set your gender and objective — your first box ships within the week.
-      </p>
+      <p class="eyebrow">{t("contact.eyebrow")}</p>
+      <h2>{t("contact.heading")}</h2>
+      <p class="contact__sub">{t("contact.sub")}</p>
       <div class="contact__ctas">
         <a class="btn btn--primary btn--onlight" href={`tel:${site.phone.replace(/\s/g, "")}`}>
-          Call {site.phone}
+          {t("contact.call", { phone: site.phone })}
         </a>
-        <a class="btn btn--ghost btn--onlight" href={`mailto:${site.email}`}>Email the kitchen</a>
+        <a class="btn btn--ghost btn--onlight" href={`mailto:${site.email}`}>
+          {t("contact.email")}
+        </a>
       </div>
     </div>
 
     <dl class="contact__details reveal">
       <div>
-        <dt>Kitchen</dt>
+        <dt>{t("contact.kitchen")}</dt>
         <dd>{site.address}</dd>
       </div>
       <div>
-        <dt>Phone</dt>
+        <dt>{t("contact.phone")}</dt>
         <dd>{site.phone}</dd>
       </div>
       <div>
-        <dt>Email</dt>
+        <dt>{t("contact.emailLabel")}</dt>
         <dd>{site.email}</dd>
       </div>
     </dl>

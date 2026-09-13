@@ -1,5 +1,14 @@
 ---
 import { site, nav } from "../data/content";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n/locales";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 
@@ -7,25 +16,22 @@ const year = new Date().getFullYear();
   <div class="wrap footer__row">
     <div>
       <p class="footer__brand">{site.name}</p>
-      <p class="footer__disclaimer">
-        Independent redesign concept created as a design case study. Not affiliated with or
-        endorsed by the real Fit Food Canarias business.
-      </p>
+      <p class="footer__disclaimer">{t("footer.disclaimer")}</p>
     </div>
 
-    <nav aria-label="Footer">
+    <nav aria-label={t("nav.label")}>
       <ul class="footer__nav">
         {
           nav.map((item) => (
             <li>
-              <a href={item.href}>{item.label}</a>
+              <a href={item.href}>{t(item.key)}</a>
             </li>
           ))
         }
       </ul>
     </nav>
 
-    <p class="footer__copy">© {year} — concept design, not a live storefront.</p>
+    <p class="footer__copy">{t("footer.copy", { year })}</p>
   </div>
 </footer>
 

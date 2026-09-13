@@ -1,16 +1,23 @@
 ---
-import { plans } from "../data/content";
+import { getContent } from "../data/content";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n/locales";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { plans } = getContent(lang);
 ---
 
 <section id="plans" class="section section--onlight plans">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Plans</p>
-      <h2>Pick the macro split, not a diet fad.</h2>
-      <p>
-        Every plan carries the same fresh-kitchen standard. What changes is the ratio —
-        matched to gender and objective when you set up delivery.
-      </p>
+      <p class="eyebrow">{t("plans.eyebrow")}</p>
+      <h2>{t("plans.heading")}</h2>
+      <p>{t("plans.intro")}</p>
     </div>
 
     <div class="plans__grid">

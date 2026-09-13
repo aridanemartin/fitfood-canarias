@@ -1,21 +1,42 @@
 ---
-import { founder } from "../data/content";
+import { getContent, founderProfile } from "../data/content";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n/locales";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { founderParagraphs } = getContent(lang);
 ---
 
 <section id="about" class="section section--onlight founder">
   <div class="wrap founder__grid">
     <div class="founder__photo reveal">
-      <img src={founder.photo} alt={`${founder.name}, founder of Fit Food Canarias`} loading="lazy" />
+      <img
+        src={founderProfile.photo}
+        alt={t("founder.photoAlt", { name: founderProfile.name })}
+        loading="lazy"
+      />
     </div>
 
     <div class="founder__copy reveal">
-      <p class="eyebrow">{founder.eyebrow}</p>
-      <h2>{founder.headline}</h2>
-      {founder.paragraphs.map((p) => <p class="founder__p">{p}</p>)}
+      <p class="eyebrow">{t("founder.eyebrow")}</p>
+      <h2>{t("founder.headline")}</h2>
+      {founderParagraphs.map((p) => <p class="founder__p">{p}</p>)}
 
       <div class="founder__sign">
-        <img src={founder.signature} alt={`${founder.name}'s signature`} class="founder__sign-img" loading="lazy" />
-        <span class="founder__sign-caption">{founder.name}, {founder.role}</span>
+        <img
+          src={founderProfile.signature}
+          alt={t("founder.signAlt", { name: founderProfile.name })}
+          class="founder__sign-img"
+          loading="lazy"
+        />
+        <span class="founder__sign-caption">
+          {founderProfile.name}, {t("founder.role")}
+        </span>
       </div>
     </div>
   </div>

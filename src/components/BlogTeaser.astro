@@ -1,12 +1,22 @@
 ---
-import { blogPosts } from "../data/content";
+import { getContent } from "../data/content";
+import { useTranslations } from "../i18n";
+import type { Lang } from "../i18n/locales";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { blogPosts } = getContent(lang);
 ---
 
 <section class="section blog">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">From the notebook</p>
-      <h2>Notes on eating for a goal, not a trend.</h2>
+      <p class="eyebrow">{t("blog.eyebrow")}</p>
+      <h2>{t("blog.heading")}</h2>
     </div>
 
     <div class="blog__grid">
@@ -15,7 +25,7 @@ import { blogPosts } from "../data/content";
           <article class="blog__card reveal">
             <h3 class="blog__title">{post.title}</h3>
             <p class="blog__excerpt">{post.excerpt}</p>
-            <span class="blog__link">Read the note →</span>
+            <span class="blog__link">{t("blog.read")}</span>
           </article>
         ))
       }
