@@ -5,7 +5,7 @@ import { site, nav } from "../data/content";
 <header class="header">
   <div class="wrap header__row">
     <a class="header__brand" href="#top">
-      {site.name}
+      <img src={site.logo} alt={site.name} class="header__logo" />
       <span class="header__badge">Redesign concept</span>
     </a>
 
@@ -45,13 +45,15 @@ import { site, nav } from "../data/content";
 
   .header__brand {
     display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.15rem;
+    align-items: center;
+    gap: 0.75rem;
     text-decoration: none;
     color: var(--color-text-ondark);
+  }
+
+  .header__logo {
+    height: 34px;
+    width: auto;
   }
 
   .header__badge {
@@ -60,7 +62,7 @@ import { site, nav } from "../data/content";
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--color-ink);
-    background: var(--accent-gain);
+    background: var(--accent);
     padding: 0.2rem 0.5rem;
     border-radius: var(--radius-pill);
   }

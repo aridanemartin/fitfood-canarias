@@ -17,7 +17,7 @@ import { hero, plans } from "../data/content";
     <div class="hero__tray reveal" role="img" aria-label="Three meal-prep tray compartments, one per plan: Fat Loss, Balanced and Muscle Gain">
       {
         plans.map((plan, i) => (
-          <div class={`hero__cell hero__cell--${i}`} style={`--cell-accent: var(--accent-${plan.accent})`}>
+          <div class={`hero__cell hero__cell--${i}`}>
             <img src={plan.image} alt="" loading={i === 0 ? "eager" : "lazy"} />
             <div class="hero__cell-tag">
               <span class="hero__cell-dot" />
@@ -103,7 +103,7 @@ import { hero, plans } from "../data/content";
     font-size: 0.72rem;
     letter-spacing: 0.02em;
     color: var(--color-text-ondark);
-    background: rgba(20, 18, 14, 0.72);
+    background: rgba(22, 22, 20, 0.72);
     backdrop-filter: blur(4px);
     padding: 0.3rem 0.55rem;
     border-radius: var(--radius-pill);
@@ -113,7 +113,7 @@ import { hero, plans } from "../data/content";
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--cell-accent);
+    background: var(--accent);
   }
 
   @media (max-width: 900px) {

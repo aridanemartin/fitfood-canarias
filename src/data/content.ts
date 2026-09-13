@@ -8,14 +8,32 @@ export const site = {
   phone: "+34 676 08 51 34",
   email: "info@fitfoodcanarias.com",
   address: "Av. Las Salinas, 19, Castillo del Romeral, 35107, Gran Canaria",
+  // Real logo, hotlinked from the live site rather than copied into this repo.
+  logo: "https://fitfoodcanarias.com/wp-content/uploads/2024/10/fitfoo_logotipo_new.png",
 };
 
 export const nav = [
   { label: "How it works", href: "#how-it-works" },
   { label: "Plans", href: "#plans" },
   { label: "Why us", href: "#why-us" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
+
+// Founder section — photo and signature are hotlinked directly from the
+// live site (not copied into this repo) at the user's explicit request.
+export const founder = {
+  name: "Patricia",
+  role: "Founder",
+  photo: "https://fitfoodcanarias.com/wp-content/uploads/2019/10/Patricia_web.jpg",
+  signature: "https://fitfoodcanarias.com/wp-content/uploads/2019/05/patpat_sign.png",
+  eyebrow: "About us",
+  headline: "The only kitchen on the island that asks your gender before your goal.",
+  paragraphs: [
+    "Fit Food Canarias started from a simple gap: generic meal plans ignore that a fat-loss target for one person isn't the same plate as for another. We build every plan around your gender and your objective, not a single macro count stretched across everyone.",
+    "Choose Fat Loss, Balanced, or Muscle Gain, tell us your gender, and we take it from there — cooked fresh and delivered to your door, so the only decision left is which one to eat first.",
+  ],
+};
 
 export const hero = {
   eyebrow: "Home delivery · Gran Canaria",
@@ -27,7 +45,6 @@ export const hero = {
 
 export type Plan = {
   id: "fat-loss" | "balanced" | "muscle-gain";
-  accent: "fatloss" | "balanced" | "gain";
   name: string;
   macroLabel: string;
   description: string;
@@ -39,7 +56,6 @@ export type Plan = {
 export const plans: Plan[] = [
   {
     id: "fat-loss",
-    accent: "fatloss",
     name: "Fat Loss",
     macroLabel: "High protein · controlled carb",
     description:
@@ -51,7 +67,6 @@ export const plans: Plan[] = [
   },
   {
     id: "balanced",
-    accent: "balanced",
     name: "Balanced",
     macroLabel: "Even macros · maintenance",
     description:
@@ -63,7 +78,6 @@ export const plans: Plan[] = [
   },
   {
     id: "muscle-gain",
-    accent: "gain",
     name: "Muscle Gain",
     macroLabel: "High protein · high carb",
     description:

@@ -1,34 +1,30 @@
 /* ---------------------------------------------------------------------
    Design tokens — Fit Food Canarias redesign concept
 
-   Palette is drawn from the island itself rather than a generic fitness
-   accent: malpaís (volcanic rock) black as the base, gofio cream for
-   panels, and three earthy accents lifted from mojo rojo, mojo verde and
-   ripe plátano — one per meal plan, so colour carries meaning instead of
-   decorating.
+   Colour values are the real corporate palette pulled from the live
+   site's stylesheet: brand green #51ad32, near-black for dark sections,
+   #333333 / #8d8d8d for text, white for light panels. The tray-grid
+   layout system stays; the colour system is now theirs, not invented.
 ------------------------------------------------------------------------ */
 
 :root {
   /* base */
-  --color-ink: #14120e; /* malpaís black — page background */
-  --color-ink-raised: #1d1a14; /* slightly lifted panels on dark */
-  --color-panel: #f3ecdd; /* gofio cream — light panels / cards */
-  --color-line: #4a4438; /* hairline dividers on dark */
-  --color-line-onlight: #d9cfb8; /* hairline dividers on cream */
+  --color-ink: #161614; /* near-black — page background (their #000/#222 family) */
+  --color-ink-raised: #201f1c;
+  --color-panel: #ffffff; /* their white panels */
+  --color-line: #333333; /* hairline dividers on dark */
+  --color-line-onlight: #e5e5e5; /* hairline dividers on white */
 
   /* text */
-  --color-text-ondark: #f3ecdd;
-  --color-text-ondark-muted: #b9b2a0;
-  --color-text-onlight: #14120e;
-  --color-text-onlight-muted: #635c4d;
+  --color-text-ondark: #ffffff;
+  --color-text-ondark-muted: #8d8d8d;
+  --color-text-onlight: #333333;
+  --color-text-onlight-muted: #8d8d8d;
 
-  /* plan accents */
-  --accent-fatloss: #c1502e; /* mojo rojo */
-  --accent-fatloss-soft: #e9c3b3;
-  --accent-balanced: #6f8a3e; /* mojo verde */
-  --accent-balanced-soft: #d7e0c1;
-  --accent-gain: #d9a441; /* plátano gold */
-  --accent-gain-soft: #f1dcac;
+  /* brand accent — one colour, used consistently rather than invented
+     per-plan hues, to match the real corporate identity */
+  --accent: #51ad32;
+  --accent-soft: #cfe6c2;
 
   /* type */
   --font-display: "Bricolage Grotesque", "Arial Black", sans-serif;
@@ -108,7 +104,7 @@ button {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent-gain);
+  color: var(--accent);
 }
 
 .section {
@@ -161,12 +157,12 @@ button {
 .btn:focus-visible,
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--accent-gain);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
 .btn--primary {
-  background: var(--accent-gain);
+  background: var(--accent);
   color: var(--color-ink);
 }
 
@@ -180,8 +176,8 @@ button:focus-visible {
 }
 
 .btn--ghost:hover {
-  border-color: var(--accent-gain);
-  color: var(--accent-gain);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 /* Tray divider signature ---------------------------------------------
@@ -208,7 +204,7 @@ button:focus-visible {
   top: -3px;
   width: 7px;
   height: 7px;
-  background: var(--accent-gain);
+  background: var(--accent);
   border-radius: 2px;
 }
 

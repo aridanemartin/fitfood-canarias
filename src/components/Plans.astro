@@ -16,7 +16,7 @@ import { plans } from "../data/content";
     <div class="plans__grid">
       {
         plans.map((plan) => (
-          <article class="plan-card reveal" style={`--accent: var(--accent-${plan.accent}); --accent-soft: var(--accent-${plan.accent}-soft)`}>
+          <article class="plan-card reveal">
             <div class="plan-card__media">
               <img src={plan.image} alt={plan.imageAlt} loading="lazy" />
             </div>
@@ -53,7 +53,7 @@ import { plans } from "../data/content";
 
   .plan-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 18px 34px -18px rgba(20, 18, 14, 0.55);
+    box-shadow: 0 18px 34px -18px rgba(0, 0, 0, 0.55);
   }
 
   .plan-card__media {
