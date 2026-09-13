@@ -1,5 +1,4 @@
 ---
-import { getContent } from "../data/content";
 import { useTranslations } from "../i18n";
 import type { Lang } from "../i18n/locales";
 
@@ -9,130 +8,228 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const { plans } = getContent(lang);
 ---
 
 <section id="top" class="hero section">
-  <div class="wrap hero__grid">
-    <div class="hero__copy reveal">
-      <p class="eyebrow">{t("hero.eyebrow")}</p>
-      <h1 class="hero__headline">{t("hero.headline")}</h1>
-      <p class="hero__sub">{t("hero.sub")}</p>
-      <div class="hero__ctas">
-        <a class="btn btn--primary" href="#plans">{t("hero.ctaPrimary")}</a>
-        <a class="btn btn--ghost" href="#how-it-works">{t("hero.ctaSecondary")}</a>
-      </div>
-    </div>
+  <div class="hero__frame reveal">
+    <img
+      class="hero__bg"
+      src="/images/hero-white-trays.webp"
+      alt={t("hero.photoAlt")}
+      loading="eager"
+    />
+    <div class="hero__scrim"></div>
 
-    <div class="hero__tray reveal" role="img" aria-label={t("hero.trayLabel")}>
-      {
-        plans.map((plan, i) => (
-          <div class={`hero__cell hero__cell--${i}`}>
-            <img src={plan.image} alt="" loading={i === 0 ? "eager" : "lazy"} />
-            <div class="hero__cell-tag">
-              <span class="hero__cell-dot" />
-              {plan.name}
-            </div>
-          </div>
-        ))
-      }
+    <div class="wrap hero__content">
+      <h1 class="hero__headline">
+        <span>{t("hero.word1")}</span>
+        <span class="accent">{t("hero.word2")}</span>
+        <span>{t("hero.word3")}</span>
+      </h1>
+
+      <div class="hero__foot">
+        <div class="hero__credential">
+          <p class="hero__badge">{t("hero.badge")}</p>
+          <p>{t("hero.credential")}</p>
+          <a class="hero__cta" href="#plans">
+            {t("hero.ctaPrimary")}
+            <span class="hero__cta-arrow">→</span>
+          </a>
+        </div>
+        <a class="hero__scrollhint" href="#how-it-works" aria-label={t("hero.scrollLabel")}>
+          ↓
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .hero {
-    padding-top: clamp(2.5rem, 6vw, 4.5rem);
+    padding-top: 0;
   }
 
-  .hero__grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
-  }
-
-  .hero__headline {
-    font-size: clamp(2.3rem, 5.2vw, 3.6rem);
-    margin-top: 0.75rem;
-    max-width: 15ch;
-  }
-
-  .hero__sub {
-    margin-top: 1.4rem;
-    max-width: 46ch;
-    color: var(--color-text-ondark-muted);
-    font-size: 1.08rem;
-  }
-
-  .hero__ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-    margin-top: 2.2rem;
-  }
-
-  /* Tray: asymmetric bento grid — one tall compartment + two stacked,
-     echoing an actual divided meal-prep container. */
-  .hero__tray {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    grid-template-rows: repeat(2, minmax(120px, 1fr));
-    gap: 6px;
-    aspect-ratio: 4 / 3.1;
-    background: var(--color-line);
-    padding: 6px;
-    border-radius: var(--radius-container);
-  }
-
-  .hero__cell {
+  /* The hero is one large, full-bleed photo "frame" with a giant
+     stacked headline over it. */
+  .hero__frame {
     position: relative;
+    width: 100%;
+    height: clamp(420px, 82vh, 760px);
     overflow: hidden;
-    border-radius: calc(var(--radius-container) - 6px);
-    background: var(--color-ink-raised);
+    isolation: isolate;
   }
 
-  .hero__cell--0 {
-    grid-row: 1 / span 2;
-  }
-
-  .hero__cell img {
+  .hero__bg {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 38%;
+    z-index: 0;
   }
 
-  .hero__cell-tag {
+  /* A light wash rather than a dark scrim — the photo is bright to begin
+     with, this just nudges up contrast behind the headline and footer. */
+  .hero__scrim {
     position: absolute;
-    left: 0.6rem;
-    bottom: 0.6rem;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(100deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.5) 58%, rgba(255, 255, 255, 0.72) 100%),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0) 34%);
+  }
+
+  /* Positioning context for the headline/footer, capped to the same
+     max-width as the sections below instead of the full-bleed photo. */
+  .hero__content {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero__headline {
+    position: absolute;
+    z-index: 2;
+    left: 8%;
+    right: 0;
+    top: 14%;
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-align: right;
+    line-height: 0.92;
+    color: var(--color-ink);
+  }
+
+  .hero__headline span {
+    display: block;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    letter-spacing: -0.01em;
+  }
+
+  .hero__headline .accent {
+    color: var(--accent);
+  }
+
+  .hero__foot {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    bottom: clamp(1.4rem, 3.5vw, 2.2rem);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  /* A translucent card — the photo is too busy in places for the dark
+     text to stay reliably readable directly on top of it. */
+  .hero__credential {
+    max-width: 26rem;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(8px);
+    padding: 1.1rem 1.3rem;
+    border-radius: var(--radius-container);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+  }
+
+  .hero__badge {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
     font-family: var(--font-data);
     font-size: 0.72rem;
-    letter-spacing: 0.02em;
-    color: var(--color-text-ondark);
-    background: rgba(22, 22, 20, 0.72);
-    backdrop-filter: blur(4px);
-    padding: 0.3rem 0.55rem;
-    border-radius: var(--radius-pill);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    margin-bottom: 0.6rem;
   }
 
-  .hero__cell-dot {
+  .hero__badge::before {
+    content: "";
     width: 7px;
     height: 7px;
     border-radius: 50%;
     background: var(--accent);
   }
 
-  @media (max-width: 900px) {
-    .hero__grid {
-      grid-template-columns: 1fr;
+  .hero__credential p:not(.hero__badge) {
+    font-size: 0.9rem;
+    color: var(--color-text-onlight);
+    max-width: 40ch;
+    margin-bottom: 1.1rem;
+  }
+
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--color-ink);
+    color: var(--color-text-ondark);
+    padding: 0.55rem 0.55rem 0.55rem 1.4rem;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-data);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .hero__cta-arrow {
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--color-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+
+  .hero__scrollhint {
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    border: 1px solid rgba(22, 22, 20, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-ink);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .hero__scrollhint:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  @media (max-width: 760px) {
+    .hero__frame {
+      height: clamp(480px, 78vh, 640px);
     }
 
-    .hero__tray {
-      aspect-ratio: 4 / 2.4;
+    .hero__headline {
+      left: 6%;
+      right: 6%;
+      top: 8%;
+      text-align: left;
+    }
+
+    .hero__headline span {
+      font-size: clamp(1.9rem, 9vw, 2.6rem);
+    }
+
+    .hero__foot {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero__scrollhint {
+      display: none;
     }
   }
 </style>

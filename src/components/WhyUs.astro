@@ -2,7 +2,6 @@
 import { getContent } from "../data/content";
 import { useTranslations } from "../i18n";
 import type { Lang } from "../i18n/locales";
-import GranCanaria from "./GranCanaria.astro";
 
 interface Props {
   lang: Lang;
@@ -11,6 +10,17 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 const { differentiators } = getContent(lang);
+
+// One stock image per differentiator cell, keyed by render order.
+// All sourced from Unsplash (photo IDs noted) and stored locally so the
+// page has no runtime dependency on a third-party CDN.
+// Injected as a CSS custom property so the styles stay in one place.
+const backgroundImages = [
+  "/images/why-gender-goal.webp", // Unsplash photo-1504674900247-0877df9cc836
+  "/images/why-nutritionists.webp", // Unsplash photo-1577219491135-ce391730fb2c
+  "/images/why-sourced-island.webp", // Unsplash photo-1488459716781-31db52582fe9
+  "/images/why-diet-aware.webp", // Unsplash photo-1512621776951-a57141f2eefd
+];
 ---
 
 <section id="why-us" class="section why">
@@ -23,8 +33,10 @@ const { differentiators } = getContent(lang);
     <div class="why__grid">
       {
         differentiators.map((item, i) => (
-          <div class={`why__cell why__cell--${i} reveal`}>
-            {i === 2 && <GranCanaria class="why__island" />}
+          <div
+            class={`why__cell why__cell--${i} reveal`}
+            style={`--why-img: url('${backgroundImages[i]}')`}
+          >
             <h3 class="why__title">{item.title}</h3>
             <p class="why__text">{item.text}</p>
           </div>
@@ -46,8 +58,44 @@ const { differentiators } = getContent(lang);
   }
 
   .why__cell {
+    position: relative;
+    isolation: isolate; /* keeps ::before/::after above the cell background, below content */
     background: var(--color-ink);
     padding: clamp(1.5rem, 2.6vw, 2rem);
+  }
+
+  /* Background photo — barely visible at rest. */
+  .why__cell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: var(--why-img);
+    background-size: cover;
+    background-position: right center;
+    opacity: 0.16;
+    filter: grayscale(65%) contrast(1.05);
+    transition: opacity 0.45s ease, filter 0.45s ease;
+  }
+
+  /* Gradient scrim — keeps copy readable and hides the photo further. */
+  .why__cell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      105deg,
+      rgb(22 22 20 / 0.88) 0%,
+      rgb(22 22 20 / 0.62) 100%
+    );
+  }
+
+  /* Hover (and keyboard focus) lets the photo come through. */
+  .why__cell:hover::before,
+  .why__cell:focus-within::before {
+    opacity: 0.55;
+    filter: grayscale(12%) contrast(1.02);
   }
 
   /* Asymmetric spans so the grid reads as a divided tray rather than a
@@ -76,6 +124,12 @@ const { differentiators } = getContent(lang);
     margin-top: 0.6rem;
     color: var(--color-text-ondark-muted);
     font-size: 0.95rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .why__cell::before {
+      transition: none;
+    }
   }
 
   @media (max-width: 900px) {

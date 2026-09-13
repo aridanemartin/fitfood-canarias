@@ -25,14 +25,16 @@ export const es: Dict = {
   'nav.contact': 'Contacto',
 
   // Hero
-  'hero.eyebrow': 'Entrega a domicilio · Gran Canaria',
-  'hero.headline': 'Tus macros, racionados por quien de verdad los revisó.',
-  'hero.sub':
-    'Tres planes por objetivo, construidos en torno a tu sexo y tu meta, cocinados el mismo día en Castillo del Romeral y entregados en tu puerta. Sin básculas, sin adivinar y sin cocinar durante un mes.',
-  'hero.ctaPrimary': 'Ver los tres planes',
-  'hero.ctaSecondary': 'Cómo funciona la entrega',
-  'hero.trayLabel':
-    'Tres compartimentos de comida preparada, uno por plan: Pérdida de grasa, Equilibrado y Ganancia muscular',
+  'hero.word1': 'Personalizado',
+  'hero.word2': 'Cocinado',
+  'hero.word3': 'Enviado',
+  'hero.badge': 'Cocina aprobada por nutricionistas',
+  'hero.credential':
+    'Fit Food Canarias construye cada plan en torno a tu sexo y tu objetivo: cocinado el mismo día en Castillo del Romeral y entregado en tu puerta.',
+  'hero.ctaPrimary': 'Ver los planes',
+  'hero.scrollLabel': 'Ir a cómo funciona',
+  'hero.photoAlt':
+    'Tres fiambreras de cristal sobre una encimera luminosa: pollo a la parrilla con verduras asadas y quinoa, salmón con espárragos, brócoli y quinoa, y garbanzos especiados con aguacate y quinoa',
 
   // How it works
   'how.eyebrow': 'Cómo funciona',

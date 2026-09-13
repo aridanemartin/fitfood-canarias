@@ -25,15 +25,16 @@ export const en = {
   'nav.contact': 'Contact',
 
   // Hero
-  'hero.eyebrow': 'Home delivery · Gran Canaria',
-  'hero.headline':
-    'Your macros, portioned by someone who actually checked them.',
-  'hero.sub':
-    'Three goal-based plans, built around your gender and your objective, cooked fresh in Castillo del Romeral and delivered to your door. No scales, no guesswork, no cooking for a month.',
-  'hero.ctaPrimary': 'See the three plans',
-  'hero.ctaSecondary': 'How delivery works',
-  'hero.trayLabel':
-    'Three meal-prep tray compartments, one per plan: Fat Loss, Balanced and Muscle Gain',
+  'hero.word1': 'Cooked',
+  'hero.word2': 'Counted',
+  'hero.word3': 'Delivered',
+  'hero.badge': 'Nutritionist-approved kitchen',
+  'hero.credential':
+    'Fit Food Canarias builds every plan around your gender and objective — cooked fresh in Castillo del Romeral, delivered to your door.',
+  'hero.ctaPrimary': 'See the plans',
+  'hero.scrollLabel': 'Scroll to how it works',
+  'hero.photoAlt':
+    'Three glass meal-prep containers on a bright kitchen counter: grilled chicken with roasted vegetables and quinoa, salmon with asparagus, broccoli and quinoa, and spiced chickpeas with avocado and quinoa',
 
   // How it works
   'how.eyebrow': 'How it works',
