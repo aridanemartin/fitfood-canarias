@@ -67,6 +67,8 @@ export type Testimonial = {
 export type BlogPost = {
   title: string;
   excerpt: string;
+  image: string;
+  imageAlt: string;
 };
 
 interface StructuredContent {
@@ -300,7 +302,37 @@ const testimonials: Record<Lang, Testimonial[]> = {
   ],
 };
 
-const blogPosts: Record<Lang, BlogPost[]> = {
+/* Imagery is shared across locales, indexed by post order; only the
+ * alternative text differs. Same sourcing pattern as WhyUs: Unsplash
+ * stock photos, stored locally so the page has no runtime dependency
+ * on a third-party CDN. */
+const blogMedia: { image: string; imageAlt: Record<Lang, string> }[] = [
+  {
+    image: "/images/blog-portion.webp", // Unsplash photo-1594221708779-94832f4320d1
+    imageAlt: {
+      es: "Un bol de comida ya porcionado en un táper para llevar",
+      en: "A pre-portioned meal bowl in a takeout container",
+    },
+  },
+  {
+    image: "/images/blog-competition.webp", // Unsplash photo-1571019613454-1cb2f99b2d8b
+    imageAlt: {
+      es: "Una atleta haciendo abdominales durante un entrenamiento",
+      en: "An athlete doing sit-ups during a training session",
+    },
+  },
+  {
+    image: "/images/blog-fresh.webp", // Unsplash photo-1490645935967-10de6ba17061
+    imageAlt: {
+      es: "Ingredientes frescos, incluido aguacate y tomate, sobre una mesa de madera",
+      en: "Fresh ingredients, including avocado and tomato, on a wooden table",
+    },
+  },
+];
+
+type BlogCopy = Omit<BlogPost, "image" | "imageAlt">;
+
+const blogCopy: Record<Lang, BlogCopy[]> = {
   es: [
     {
       title: "Por qué la ración importa más que las apps de conteo de calorías",
@@ -337,6 +369,14 @@ const blogPosts: Record<Lang, BlogPost[]> = {
   ],
 };
 
+function buildBlogPosts(lang: Lang): BlogPost[] {
+  return blogCopy[lang].map((post, i) => ({
+    ...post,
+    image: blogMedia[i].image,
+    imageAlt: blogMedia[i].imageAlt[lang],
+  }));
+}
+
 function buildPlans(lang: Lang): Plan[] {
   return planCopy[lang].map((plan) => ({
     ...plan,
@@ -352,7 +392,7 @@ const contentByLang: Record<Lang, StructuredContent> = {
     founderParagraphs: founderParagraphs.es,
     differentiators: differentiators.es,
     testimonials: testimonials.es,
-    blogPosts: blogPosts.es,
+    blogPosts: buildBlogPosts("es"),
   },
   en: {
     plans: buildPlans("en"),
@@ -360,7 +400,7 @@ const contentByLang: Record<Lang, StructuredContent> = {
     founderParagraphs: founderParagraphs.en,
     differentiators: differentiators.en,
     testimonials: testimonials.en,
-    blogPosts: blogPosts.en,
+    blogPosts: buildBlogPosts("en"),
   },
 };
 

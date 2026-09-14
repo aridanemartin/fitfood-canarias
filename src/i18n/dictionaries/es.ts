@@ -63,6 +63,7 @@ export const es: Dict = {
   'testimonials.heading': 'Opiniones ilustrativas, escritas para este concepto',
   'testimonials.note':
     'Citas de ejemplo para esta propuesta de rediseño, no son reseñas verificadas del negocio real.',
+  'testimonials.rating': '5 de 5 estrellas',
 
   // Blog
   'blog.eyebrow': 'Del cuaderno',
@@ -82,7 +83,13 @@ export const es: Dict = {
   'contact.emailLabel': 'Correo',
 
   // Footer
+  'footer.tagline': 'Comida preparada, medida para tu objetivo.',
   'footer.disclaimer':
     'Concepto de rediseño independiente creado como caso de estudio de diseño. Sin afiliación ni respaldo del negocio real Fit Food Canarias.',
+  'footer.navHeading': 'Navegación',
+  'footer.contactHeading': 'Contacto',
+  'footer.followHeading': 'Síguenos',
+  'footer.socialsComingSoon': 'Enlaces a redes sociales, próximamente.',
+  'footer.madeIn': 'Hecho en Gran Canaria',
   'footer.copy': '© {year} — diseño conceptual, no es una tienda activa.',
 };

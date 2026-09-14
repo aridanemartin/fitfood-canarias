@@ -63,6 +63,7 @@ export const en = {
   'testimonials.heading': 'Illustrative feedback, written for this concept',
   'testimonials.note':
     'Sample quotes for this redesign pitch — not verified reviews from the live business.',
+  'testimonials.rating': '5 out of 5 stars',
 
   // Blog
   'blog.eyebrow': 'From the notebook',
@@ -81,8 +82,14 @@ export const en = {
   'contact.emailLabel': 'Email',
 
   // Footer
+  'footer.tagline': 'Meal prep, measured to your goal.',
   'footer.disclaimer':
     'Independent redesign concept created as a design case study. Not affiliated with or endorsed by the real Fit Food Canarias business.',
+  'footer.navHeading': 'Site',
+  'footer.contactHeading': 'Contact',
+  'footer.followHeading': 'Follow',
+  'footer.socialsComingSoon': 'Social media links coming soon.',
+  'footer.madeIn': 'Made in Gran Canaria',
   'footer.copy': '© {year} — concept design, not a live storefront.',
 } as const;
 
