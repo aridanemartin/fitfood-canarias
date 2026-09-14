@@ -25,14 +25,12 @@ export const es: Dict = {
   'nav.contact': 'Contacto',
 
   // Hero
-  'hero.word1': 'Personalizado',
-  'hero.word2': 'Cocinado',
-  'hero.word3': 'Enviado',
+  'hero.headlineLine1': 'Tu plan de comidas,',
+  'hero.headlineLine2': 'a tu medida.',
   'hero.badge': 'Cocina aprobada por nutricionistas',
   'hero.credential':
     'Fit Food Canarias construye cada plan en torno a tu sexo y tu objetivo: cocinado el mismo día en Castillo del Romeral y entregado en tu puerta.',
   'hero.ctaPrimary': 'Ver los planes',
-  'hero.scrollLabel': 'Ir a cómo funciona',
   'hero.photoAlt':
     'Tres fiambreras de cristal sobre una encimera luminosa: pollo a la parrilla con verduras asadas y quinoa, salmón con espárragos, brócoli y quinoa, y garbanzos especiados con aguacate y quinoa',
 

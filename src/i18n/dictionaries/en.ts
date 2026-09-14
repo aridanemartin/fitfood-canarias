@@ -25,14 +25,12 @@ export const en = {
   'nav.contact': 'Contact',
 
   // Hero
-  'hero.word1': 'Cooked',
-  'hero.word2': 'Counted',
-  'hero.word3': 'Delivered',
+  'hero.headlineLine1': 'Your meal plan,',
+  'hero.headlineLine2': 'made to fit.',
   'hero.badge': 'Nutritionist-approved kitchen',
   'hero.credential':
     'Fit Food Canarias builds every plan around your gender and objective — cooked fresh in Castillo del Romeral, delivered to your door.',
   'hero.ctaPrimary': 'See the plans',
-  'hero.scrollLabel': 'Scroll to how it works',
   'hero.photoAlt':
     'Three glass meal-prep containers on a bright kitchen counter: grilled chicken with roasted vegetables and quinoa, salmon with asparagus, broccoli and quinoa, and spiced chickpeas with avocado and quinoa',
 
